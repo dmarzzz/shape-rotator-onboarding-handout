@@ -6,18 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --paper: #FAF8F5;
     --paper-deep: #f1ebe2;
     --ink: #1A1A1A;
-    --ink-soft: #4a4540;
-    --rule: #6f6357;
-    --rule-soft: #b6a89a;
+    --ink-soft: #524A48;
+    --rule: #1A1A1A;
+    --rule-soft: #8a8175;
     --oxide: #8a2e1c;
-    --oxide-deep: #6b2114;
-    --faint: #978a7c;
+    --oxide-deep: #5d1f12;
+    --grid: #d9d2c2;
   }
 
   @page { size: letter; margin: 0.3in; }
@@ -26,27 +26,28 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: #d9d2c2;
+    background: #c8c0ad;
     color: var(--ink);
     font-family: "Space Grotesk", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  body {
-    display: flex;
-    justify-content: center;
-    padding: 32px 16px 64px;
-  }
+  body { display: flex; justify-content: center; padding: 32px 16px 64px; }
 
   .sheet {
     width: 8.5in;
     min-height: 11in;
     background: var(--paper);
+    /* faint dot grid — gives the page a graph-paper feel without burning toner */
+    background-image: radial-gradient(circle, rgba(26,26,26,0.045) 0.5px, transparent 0.6px);
+    background-size: 12px 12px;
+    background-position: 0 0;
     padding: 0.5in 0.55in 0.45in;
     position: relative;
     box-shadow: 0 30px 60px -30px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.08);
     color: var(--ink);
+    overflow: hidden;
   }
 
   @media print {
@@ -58,207 +59,247 @@
 
   /* ───── Masthead ───── */
   header.masthead {
-    border-bottom: 1.5px solid var(--ink);
-    padding-bottom: 12px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    padding: 12px 0 14px;
     margin-bottom: 14px;
+    position: relative;
   }
 
   .mast-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .mark-svg {
+    width: 64px;
+    height: 64px;
+    display: block;
   }
 
   .wordmark {
     margin: 0;
-    line-height: 0.92;
+    line-height: 0.95;
   }
   .wordmark .word-1 {
     display: block;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 700;
-    font-size: 52px;
-    letter-spacing: -0.025em;
+    font-size: 38px;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
     color: var(--ink);
   }
   .wordmark .word-2 {
     display: block;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 300;
-    font-size: 52px;
-    letter-spacing: -0.025em;
+    font-size: 38px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--oxide);
-    font-style: italic;
+    margin-top: -2px;
   }
 
   .mast-meta {
     text-align: right;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 10px;
-    font-weight: 500;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.55;
+    flex-shrink: 0;
+    border-left: 2px solid var(--ink);
+    padding-left: 14px;
+  }
+  .mast-meta .meta-em { color: var(--oxide); }
+  .mast-meta .meta-link {
+    color: var(--oxide);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--oxide);
+    letter-spacing: 0.06em;
+    text-transform: none;
+    font-weight: 700;
+    padding-bottom: 1px;
+  }
+
+  .subtitle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 18px;
+    margin-top: 10px;
+    border-top: 1px solid var(--ink);
+    padding-top: 9px;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .subtitle .slash { color: var(--oxide); margin: 0 4px; }
+
+  .tagline {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ink);
+    max-width: 4.3in;
+    text-align: right;
+  }
+
+  .partners-row {
+    margin-top: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    line-height: 1.5;
-    padding-top: 8px;
-    flex-shrink: 0;
+    font-weight: 600;
+    text-align: center;
   }
-  .mast-meta .meta-em { color: var(--oxide); font-weight: 600; }
-
-  .subtitle {
-    margin-top: 14px;
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 500;
-    font-size: 26px;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-  }
-  .subtitle .dot { color: var(--oxide); }
-
-  .tagline {
-    margin: 6px 0 0;
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 1.45;
-    color: var(--ink-soft);
-    max-width: 6.5in;
-  }
-
-  .partners {
-    margin: 8px 0 0;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    font-weight: 500;
-  }
-  .partners .x { color: var(--oxide); margin: 0 2px; }
+  .partners-row .x { color: var(--oxide); margin: 0 2px; font-weight: 700; }
 
   /* ───── Section header ───── */
   .section-eyebrow {
     display: flex;
     align-items: baseline;
     gap: 10px;
-    margin: 14px 0 8px;
+    margin: 12px 0 8px;
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink);
-    font-weight: 600;
+    font-weight: 700;
   }
-  .section-eyebrow .num { color: var(--oxide); }
+  .section-eyebrow .num {
+    color: var(--paper);
+    background: var(--oxide);
+    padding: 2px 7px 1px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
   .section-eyebrow .sub {
     color: var(--ink-soft);
-    font-weight: 400;
-    letter-spacing: 0.14em;
+    font-weight: 500;
+    letter-spacing: 0.12em;
   }
   .section-eyebrow::after {
     content: "";
     flex: 1;
-    height: 1px;
+    height: 2px;
     background: var(--ink);
   }
-
-  /* ───── Welcome blurb ───── */
-  .welcome {
-    margin: 6px 0 14px;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 14px;
-    line-height: 1.45;
-    color: var(--ink);
-    max-width: 7in;
-  }
-  .welcome strong { font-weight: 600; }
 
   /* ───── Step cards ───── */
   .steps-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: 9px;
+    margin-bottom: 12px;
   }
 
   .step {
     border: 1.5px solid var(--ink);
-    padding: 10px 12px 11px;
-    background: rgba(255,255,255,0.4);
+    padding: 9px 12px 11px;
+    background: rgba(255,255,255,0.45);
     position: relative;
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
-    gap: 6px;
+    gap: 5px;
   }
-
   .step.span-2 { grid-column: 1 / -1; }
+
+  /* corner ticks — small filled squares at each corner for spec-sheet feel */
+  .step::before, .step::after,
+  .step .tick-tl, .step .tick-br {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--ink);
+  }
+  .step::before { top: -2px; left: -2px; }
+  .step::after  { bottom: -2px; right: -2px; }
+  .step .tick-tl { top: -2px; right: -2px; }
+  .step .tick-br { bottom: -2px; left: -2px; }
 
   .step-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    margin-bottom: 1px;
   }
 
   .step-num {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: var(--oxide);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink);
   }
+  .step-num .bracket { color: var(--oxide); }
 
   .step-status {
     font-family: "JetBrains Mono", monospace;
-    font-size: 8.5px;
-    letter-spacing: 0.16em;
+    font-size: 8px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    padding: 2px 8px;
-    border: 1px solid var(--ink);
-    border-radius: 999px;
+    padding: 2px 7px 1px;
     color: var(--ink);
-    font-weight: 500;
+    font-weight: 700;
     background: var(--paper);
+    border: 1px solid var(--ink);
   }
-  .step-status.auto    { color: var(--ink-soft); border-color: var(--rule-soft); }
-  .step-status.now     { color: var(--paper); background: var(--oxide); border-color: var(--oxide); font-weight: 600; }
-  .step-status.pending { color: var(--ink-soft); border-color: var(--rule-soft); border-style: dashed; }
+  .step-status.auto    { color: var(--ink-soft); border-color: var(--rule-soft); font-weight: 500; }
+  .step-status.now     { color: var(--paper); background: var(--oxide); border-color: var(--oxide); }
+  .step-status.pending { color: var(--ink-soft); border-color: var(--rule-soft); font-weight: 500; }
 
   .step-title {
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.01em;
-    line-height: 1.15;
+    line-height: 1.12;
     color: var(--ink);
   }
 
   .step-body {
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 11.5px;
+    font-size: 11px;
     line-height: 1.4;
-    color: var(--ink-soft);
+    color: var(--ink);
   }
   .step-body code {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10.5px;
+    font-size: 10px;
     color: var(--ink);
     background: var(--paper-deep);
     padding: 0 4px;
-    border-radius: 2px;
   }
 
   .step-action {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     color: var(--oxide);
-    border-top: 1px dashed var(--rule-soft);
-    padding-top: 6px;
+    border-top: 1.5px solid var(--ink);
+    padding-top: 5px;
     margin-top: 2px;
   }
   .step-action::before { content: "→ "; }
@@ -268,48 +309,52 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
-    margin-bottom: 14px;
+    border: 2px solid var(--ink);
+    margin-bottom: 12px;
   }
 
   .arc-cell {
-    padding: 8px 10px 9px;
-    border-right: 1px dashed var(--rule-soft);
+    padding: 7px 9px 8px;
+    border-right: 1.5px solid var(--ink);
     display: grid;
-    gap: 3px;
+    gap: 2px;
     position: relative;
   }
   .arc-cell:last-child { border-right: none; }
   .arc-cell.now {
-    background: rgba(138, 46, 28, 0.06);
+    background: var(--oxide);
+    color: var(--paper);
   }
+  .arc-cell.now .arc-weeks,
+  .arc-cell.now .arc-title,
+  .arc-cell.now .arc-dates,
+  .arc-cell.now .arc-note { color: var(--paper); }
 
   .arc-weeks {
     font-family: "JetBrains Mono", monospace;
-    font-size: 9.5px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--oxide);
   }
   .arc-title {
     font-family: "Space Grotesk", sans-serif;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.005em;
     color: var(--ink);
+    line-height: 1.1;
   }
   .arc-dates {
     font-family: "JetBrains Mono", monospace;
-    font-size: 9px;
+    font-size: 8.5px;
     color: var(--ink-soft);
     letter-spacing: 0.04em;
   }
   .arc-note {
     font-family: "Space Grotesk", sans-serif;
-    font-style: italic;
-    font-size: 10.5px;
+    font-size: 10px;
     line-height: 1.3;
     color: var(--ink-soft);
     margin-top: 2px;
@@ -319,24 +364,29 @@
   .bottom-grid {
     display: grid;
     grid-template-columns: 1.25fr 1fr;
-    gap: 18px;
-    margin-bottom: 12px;
+    gap: 16px;
+    margin-bottom: 8px;
   }
 
   /* Weekly rhythm */
+  .rhythm {
+    border: 1.5px solid var(--ink);
+  }
   .rhythm-row {
     display: grid;
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: 100px 1fr;
     gap: 12px;
-    padding: 5px 0;
-    border-bottom: 1px dashed var(--rule-soft);
+    padding: 5px 11px;
+    border-bottom: 1px solid var(--rule-soft);
     align-items: baseline;
   }
   .rhythm-row:last-child { border-bottom: none; }
+  .rhythm-row:nth-child(odd) { background: rgba(255,255,255,0.35); }
+
   .rhythm-when {
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink);
@@ -345,97 +395,76 @@
     display: block;
     color: var(--ink-soft);
     font-weight: 400;
-    letter-spacing: 0.08em;
-    font-size: 8.5px;
-    margin-top: 2px;
+    letter-spacing: 0.06em;
+    font-size: 8px;
+    margin-top: 1px;
+    text-transform: lowercase;
   }
   .rhythm-what {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 12.5px;
-    line-height: 1.35;
+    font-size: 11.5px;
+    line-height: 1.3;
     color: var(--ink);
-  }
-  .rhythm-what em {
-    color: var(--ink-soft);
-    font-style: italic;
-    font-size: 11px;
   }
 
   /* Vectors */
   .vectors {
     display: grid;
-    gap: 8px;
-    padding-left: 14px;
-    border-left: 1.5px solid var(--ink);
+    gap: 4px;
   }
   .vector {
+    padding: 6px 10px 7px;
+    border: 1.5px solid var(--ink);
+    background: rgba(255,255,255,0.4);
     display: grid;
-    grid-template-columns: 26px 1fr;
-    gap: 8px;
-    align-items: baseline;
+    grid-template-columns: 28px 1fr;
+    gap: 4px 8px;
   }
   .vector-num {
-    font-family: "Space Grotesk", sans-serif;
-    font-style: italic;
-    font-weight: 600;
-    font-size: 18px;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 14px;
     color: var(--oxide);
     line-height: 1;
+    grid-row: 1 / 3;
+    align-self: center;
   }
   .vector-title {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 13.5px;
-    font-weight: 600;
+    font-size: 12.5px;
+    font-weight: 700;
     color: var(--ink);
     letter-spacing: -0.005em;
+    text-transform: uppercase;
   }
   .vector-body {
     grid-column: 2;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 11px;
-    line-height: 1.35;
-    color: var(--ink-soft);
-    margin-top: 1px;
-  }
-  .vectors-foot {
-    margin-top: 4px;
-    padding-top: 8px;
-    border-top: 1px dashed var(--rule-soft);
-    font-family: "Space Grotesk", sans-serif;
-    font-style: italic;
     font-size: 10.5px;
-    line-height: 1.35;
+    line-height: 1.3;
     color: var(--ink-soft);
   }
 
   /* ───── Footer ───── */
   footer.colophon {
-    border-top: 1.5px solid var(--ink);
-    padding-top: 8px;
-    margin-top: 4px;
+    border-top: 3px solid var(--ink);
+    padding-top: 7px;
+    margin-top: 6px;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     font-family: "JetBrains Mono", monospace;
     font-size: 9px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    font-weight: 600;
   }
   .colophon .center {
     flex: 1;
     text-align: center;
+    color: var(--oxide);
   }
-  .colophon .center .mark {
-    font-family: "Space Grotesk", sans-serif;
-    font-style: italic;
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 12px;
-    color: var(--ink);
-    font-weight: 400;
-  }
-  .colophon .right { text-align: right; }
 
   /* Print button */
   .print-button {
@@ -466,127 +495,137 @@
   <!-- ═════════════ MASTHEAD ═════════════ -->
   <header class="masthead">
     <div class="mast-top">
+      <!-- Wireframe rotated-cube mark (the "oxide-red object" motif from shaperotator.xyz) -->
+      <svg class="mark-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Shape Rotator mark">
+        <!-- back face -->
+        <polygon points="50,18 82,32 82,72 50,86 18,72 18,32" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+        <!-- inner cube wireframe (isometric) -->
+        <polygon points="50,30 70,40 70,68 50,78 30,68 30,40" fill="none" stroke="#8a2e1c" stroke-width="2"/>
+        <!-- axis lines -->
+        <line x1="50" y1="30" x2="50" y2="78" stroke="#1A1A1A" stroke-width="1"/>
+        <line x1="30" y1="40" x2="70" y2="40" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="30" y1="68" x2="70" y2="68" stroke="#1A1A1A" stroke-width="1"/>
+        <!-- rotation arc -->
+        <path d="M 14 50 A 36 36 0 0 1 38 18" fill="none" stroke="#8a2e1c" stroke-width="1.2"/>
+        <polygon points="38,18 33,17 36,22" fill="#8a2e1c"/>
+        <!-- corner dots -->
+        <circle cx="50" cy="18" r="2" fill="#1A1A1A"/>
+        <circle cx="82" cy="32" r="2" fill="#1A1A1A"/>
+        <circle cx="82" cy="72" r="2" fill="#1A1A1A"/>
+        <circle cx="50" cy="86" r="2" fill="#1A1A1A"/>
+        <circle cx="18" cy="72" r="2" fill="#1A1A1A"/>
+        <circle cx="18" cy="32" r="2" fill="#1A1A1A"/>
+      </svg>
+
       <h1 class="wordmark">
         <span class="word-1">Shape Rotator</span>
-        <span class="word-2">Accelerator.</span>
+        <span class="word-2">Accelerator</span>
       </h1>
+
       <div class="mast-meta">
         <span class="meta-em">Cohort 01</span><br/>
-        May 18 – Jul 18<br/>
-        2026
+        2026<br/>
+        <a class="meta-link" href="https://shaperotator.xyz">shaperotator.xyz</a>
       </div>
     </div>
 
-    <p class="subtitle">Onboarding Guide <span class="dot">.</span></p>
+    <div class="subtitle-row">
+      <h2 class="subtitle">Onboarding<span class="slash"> / </span>Guide</h2>
+      <p class="tagline">
+        A 10-week program turning cryptography and AI research into products people can use.
+      </p>
+    </div>
 
-    <p class="tagline">
-      A 10-week program turning cryptography and AI research into products people can use.
-      NYC-based, anchored at The Convent. ~30–50 builders across 15 invited teams plus a
-      rotating set of guest contributors.
-    </p>
-
-    <p class="partners">
+    <p class="partners-row">
       IC3 <span class="x">×</span> Flashbots <span class="x">×</span> The Convent <span class="x">×</span> Blockchain Builders Fund
     </p>
   </header>
 
-  <!-- ═════════════ § 01 · YOUR FIRST WEEK ═════════════ -->
+  <!-- ═════════════ § 01 · FIRST WEEK ═════════════ -->
   <div class="section-eyebrow">
     <span class="num">§ 01</span>
-    <span>Your First Week</span>
+    <span>First Week</span>
     <span class="sub">— 5 steps · ~30 min · everything below opens a GitHub PR</span>
   </div>
-
-  <p class="welcome">
-    <strong>Welcome.</strong> These are the first five things to do once you're at the
-    Convent and the field-guide app is running. Each one closes a small loop between you
-    and the cohort. Start with step 01 so the rest of us can find you.
-  </p>
 
   <div class="steps-grid">
 
     <!-- Step 01 -->
     <div class="step">
+      <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
-        <span class="step-num">[ 01 ]</span>
-        <span class="step-status auto">auto · done</span>
+        <span class="step-num"><span class="bracket">[</span> 01 <span class="bracket">]</span></span>
       </div>
       <h3 class="step-title">Set up your local agent.</h3>
       <p class="step-body">
-        You're reading this inside the <code>field-guide</code> app, which means your local
-        agent is already running on this machine. The <code>field-kit</code> gives it the
-        CLI tools that drive the rest of onboarding — research swarm, voice TUI, content
-        pipeline, skills.
+        You're reading this inside the <code>field-guide</code> app, so the agent is already
+        running. The <code>field-kit</code> gives it CLI tools — research, voice, content, skills.
       </p>
       <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit</p>
     </div>
 
     <!-- Step 02 -->
     <div class="step">
+      <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
-        <span class="step-num">[ 02 ]</span>
-        <span class="step-status now">do now</span>
+        <span class="step-num"><span class="bracket">[</span> 02 <span class="bracket">]</span></span>
       </div>
       <h3 class="step-title">Verify your profile.</h3>
       <p class="step-body">
-        Open the profile editor in the app. Fill out your <em>personal API</em>:
-        <code>comm_style</code>, <code>contribute_interests</code>,
-        <code>availability_pref</code>, <code>weekly_intention</code>. Submit opens a
-        GitHub PR against the field-guide repo.
+        Open the editor and fill out your <em>personal API</em>: <code>comm_style</code>,
+        <code>contribute_interests</code>, <code>availability_pref</code>,
+        <code>weekly_intention</code>. Submit opens a PR.
       </p>
       <p class="step-action">alchemy → profile → verify + edit</p>
     </div>
 
     <!-- Step 03 -->
     <div class="step">
+      <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
-        <span class="step-num">[ 03 ]</span>
-        <span class="step-status pending">pending</span>
+        <span class="step-num"><span class="bracket">[</span> 03 <span class="bracket">]</span></span>
       </div>
       <h3 class="step-title">Join the Matrix server.</h3>
       <p class="step-body">
-        The cohort chats in Matrix. Create an account on the homeserver and join the
-        cohort room.
+        Create an account on the homeserver and join the cohort room.
       </p>
       <p class="step-action">#shape-rotator-general:mtrx.shaperotator.xyz</p>
     </div>
 
     <!-- Step 04 -->
     <div class="step">
+      <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
-        <span class="step-num">[ 04 ]</span>
-        <span class="step-status pending">pending</span>
+        <span class="step-num"><span class="bracket">[</span> 04 <span class="bracket">]</span></span>
       </div>
-      <h3 class="step-title">Have your agent join Matrix.</h3>
+      <h3 class="step-title">Send your agent into Matrix.</h3>
       <p class="step-body">
         Register your local agent as a bot in the cohort room so it can post and read
-        on your behalf. The field-kit ships a skill that walks through it.
+        on your behalf.
       </p>
       <p class="step-action">field-kit · /matrix-bot-setup</p>
     </div>
 
-    <!-- Step 05 (spans both cols) -->
+    <!-- Step 05 — spans both columns -->
     <div class="step span-2">
+      <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
-        <span class="step-num">[ 05 ]</span>
-        <span class="step-status pending">pending · operator wiring</span>
+        <span class="step-num"><span class="bracket">[</span> 05 <span class="bracket">]</span></span>
       </div>
       <h3 class="step-title">Do the cohort interview &amp; quiz.</h3>
       <p class="step-body">
-        A short interview and a quiz so the rest of the cohort knows what each of you
-        brings and what you're after. Opens in your browser. Links published in Matrix
-        once they're up.
+        Short interview and quiz so the cohort knows what each of you brings and what
+        you're after. Links published in Matrix once they're up.
       </p>
       <p class="step-action">interview + quiz · link tbd</p>
     </div>
 
   </div>
 
-  <!-- ═════════════ § 02 · THE 10-WEEK ARC ═════════════ -->
+  <!-- ═════════════ § 02 · 10-WEEK ARC ═════════════ -->
   <div class="section-eyebrow">
     <span class="num">§ 02</span>
-    <span>The 10-Week Arc</span>
-    <span class="sub">— what each chunk is for</span>
+    <span>10-Week Arc</span>
   </div>
 
   <div class="arc">
@@ -594,119 +633,100 @@
       <span class="arc-weeks">Wk 1–2</span>
       <span class="arc-title">Onboarding</span>
       <span class="arc-dates">may 18 → may 31</span>
-      <span class="arc-note">rolling arrivals · define your own success criteria · low-intensity by design</span>
+      <span class="arc-note">rolling arrivals · low intensity by design</span>
     </div>
     <div class="arc-cell">
       <span class="arc-weeks">Wk 3</span>
-      <span class="arc-title">IC3 Hackathon</span>
+      <span class="arc-title">IC3 Hack</span>
       <span class="arc-dates">jun 1 → jun 7 · princeton</span>
-      <span class="arc-note">a tale of two cities — half the cohort travels, half holds the convent</span>
+      <span class="arc-note">tale of two cities</span>
     </div>
     <div class="arc-cell">
       <span class="arc-weeks">Wk 4</span>
       <span class="arc-title">ETH NY · Midterm</span>
       <span class="arc-dates">jun 8 → jun 14</span>
-      <span class="arc-note">thu jun 11 — external demo day. loudest week of the program.</span>
+      <span class="arc-note">external demo day thu jun 11</span>
     </div>
     <div class="arc-cell">
       <span class="arc-weeks">Wk 5–8</span>
       <span class="arc-title">Sprint Mode</span>
       <span class="arc-dates">jun 15 → jul 12</span>
-      <span class="arc-note">recombination · projects pivot, consolidate, or fold · one reset week</span>
+      <span class="arc-note">recombination · pivot or fold</span>
     </div>
     <div class="arc-cell">
       <span class="arc-weeks">Wk 9–10</span>
-      <span class="arc-title">Road Show + Graduation</span>
+      <span class="arc-title">Road Show / Graduation</span>
       <span class="arc-dates">jul 13 → jul 18</span>
-      <span class="arc-note">curated investor / grant meetings · graduation fri jul 18</span>
+      <span class="arc-note">graduation fri jul 18</span>
     </div>
   </div>
 
   <!-- ═════════════ Bottom grid: rhythm + vectors ═════════════ -->
   <div class="bottom-grid">
 
-    <!-- § 03 · weekly rhythm -->
+    <!-- § 03 · default week -->
     <div>
       <div class="section-eyebrow">
         <span class="num">§ 03</span>
-        <span>The Default Week</span>
+        <span>Default Week</span>
       </div>
 
-      <div class="rhythm-row">
-        <span class="rhythm-when">Mornings<span class="qual">every weekday</span></span>
-        <span class="rhythm-what">Heads-down. No programming until lunch. <em>Mornings are protected.</em></span>
-      </div>
-      <div class="rhythm-row">
-        <span class="rhythm-when">5 – 7 PM<span class="qual">mon · tue · thu</span></span>
-        <span class="rhythm-what">Cohort sessions. Workshops, talks, whiteboarding. ~3–4 per week.</span>
-      </div>
-      <div class="rhythm-row">
-        <span class="rhythm-when">Wednesday<span class="qual">all day</span></span>
-        <span class="rhythm-what">No required meetings. <em>Protected focus day.</em></span>
-      </div>
-      <div class="rhythm-row">
-        <span class="rhythm-when">9 – 10 PM<span class="qual">rotating</span></span>
-        <span class="rhythm-what">Salon · roast · improv night. Opt-in, ~1 night a week.</span>
-      </div>
-      <div class="rhythm-row">
-        <span class="rhythm-when">Weekend<span class="qual">sat + sun</span></span>
-        <span class="rhythm-what">Off by default. Anything programmatic is opt-in.</span>
+      <div class="rhythm">
+        <div class="rhythm-row">
+          <span class="rhythm-when">Mornings<span class="qual">weekdays</span></span>
+          <span class="rhythm-what">Heads-down. <strong>Protected.</strong> No programming until lunch.</span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">5 – 7 PM<span class="qual">mon · tue · thu</span></span>
+          <span class="rhythm-what">Cohort sessions. Workshops, talks, whiteboarding.</span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">Wednesday<span class="qual">all day</span></span>
+          <span class="rhythm-what">No required meetings. <strong>Focus day.</strong></span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">9 – 10 PM<span class="qual">rotating</span></span>
+          <span class="rhythm-what">Salon · roast · improv. Opt-in.</span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">Weekend<span class="qual">sat + sun</span></span>
+          <span class="rhythm-what">Off by default.</span>
+        </div>
       </div>
     </div>
 
-    <!-- § 04 · success vectors -->
+    <!-- § 04 · vectors -->
     <div>
       <div class="section-eyebrow">
         <span class="num">§ 04</span>
-        <span>Success Vectors</span>
+        <span>Vectors</span>
       </div>
 
       <div class="vectors">
         <div class="vector">
           <span class="vector-num">i.</span>
           <span class="vector-title">Productization</span>
+          <span class="vector-body">Did you make something useful and get it used.</span>
         </div>
-        <div class="vector-body">
-          Is this a product people <em>want</em>? PMF indicators, organic trajectory,
-          distribution-to-market readiness.
-        </div>
-
         <div class="vector">
           <span class="vector-num">ii.</span>
           <span class="vector-title">Research lineage</span>
+          <span class="vector-body">IC3 / Flashbots IP picked up and pushed forward.</span>
         </div>
-        <div class="vector-body">
-          IC3 / Flashbots IP picked up and pushed forward. <em>Nice-to-have, not required.</em>
-        </div>
-
         <div class="vector">
           <span class="vector-num">iii.</span>
-          <span class="vector-title">Collaborative contribution</span>
+          <span class="vector-title">Collaboration</span>
+          <span class="vector-body">How much you helped <em>other</em> projects. Scored at graduation.</span>
         </div>
-        <div class="vector-body">
-          How much have you helped <em>other</em> projects? Retroactively attributed at
-          graduation via peer-rubric review.
-        </div>
-
-        <p class="vectors-foot">
-          You'll be peer-reviewed on all three at graduation. Each cluster
-          (commercial-viability / growth / commons) is judged on a different mix.
-        </p>
       </div>
     </div>
   </div>
 
   <!-- ═════════════ COLOPHON ═════════════ -->
   <footer class="colophon">
-    <div class="left">
-      Shape Rotator · Cohort 01
-    </div>
-    <div class="center">
-      <span class="mark">~ ship something useful ~</span>
-    </div>
-    <div class="right">
-      contact@shaperotator.xyz
-    </div>
+    <div class="left">Shape Rotator · Cohort 01</div>
+    <div class="center">Ship Something Useful</div>
+    <div class="right">contact@shaperotator.xyz</div>
   </footer>
 
 </article>
