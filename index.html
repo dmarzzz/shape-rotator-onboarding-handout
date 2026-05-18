@@ -207,11 +207,11 @@
 
   .step {
     border: 1.5px solid var(--ink);
-    padding: 9px 12px 11px;
+    padding: 7px 11px 9px;
     background: rgba(255,255,255,0.45);
     position: relative;
     display: grid;
-    gap: 5px;
+    gap: 4px;
   }
   .step.span-2 { grid-column: 1 / -1; }
 
@@ -291,7 +291,7 @@
   .step-title {
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 16px;
+    font-size: 14.5px;
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.12;
@@ -301,8 +301,8 @@
   .step-body {
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 11px;
-    line-height: 1.4;
+    font-size: 10.5px;
+    line-height: 1.38;
     color: var(--ink);
   }
   .step-body code {
@@ -315,13 +315,15 @@
 
   .step-action {
     font-family: "JetBrains Mono", monospace;
-    font-size: 9.5px;
+    font-size: 8.5px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.01em;
     color: var(--oxide);
     border-top: 1.5px solid var(--ink);
-    padding-top: 5px;
-    margin-top: 2px;
+    padding-top: 4px;
+    margin-top: 1px;
+    word-break: break-all;
+    line-height: 1.3;
   }
   .step-action::before { content: "→ "; }
 
@@ -578,9 +580,10 @@
       </div>
       <h3 class="step-title">Set up your local agent.</h3>
       <p class="step-body">
-        You're reading this inside <strong>Shape Rotator OS</strong>, which means your
-        local agent is already running on this machine. ✓
+        Install Claude Code (or your preferred agent) on this machine. The field-kit
+        hooks into it for the cohort's CLI superpowers.
       </p>
+      <p class="step-action">github.com/anthropics/claude-code</p>
     </div>
 
     <!-- Step 02 -->
@@ -591,9 +594,9 @@
       </div>
       <h3 class="step-title">Install the field-kit.</h3>
       <p class="step-body">
-        CLI tools for your agent — research swarm, content pipeline, cohort skills, plus
-        <strong>voxterm</strong> (voice TUI). Clone, <code>bash setup.sh</code>, then
-        <code>./kit install-global</code> to put <code>rotate</code> on your PATH.
+        Research swarm, content pipeline, cohort skills, plus <strong>voxterm</strong>
+        (voice TUI). Clone, <code>bash setup.sh</code>, then <code>./kit install-global</code>
+        to put <code>rotate</code> on your PATH.
       </p>
       <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit</p>
     </div>
@@ -606,11 +609,11 @@
       </div>
       <h3 class="step-title">Install Shape Rotator OS.</h3>
       <p class="step-body">
-        The Electron viewer you're reading this in. ✓ already running for you, but
-        install docs cover per-platform setup — including the <code>xattr -cr</code>
-        step macOS needs while the app isn't yet code-signed.
+        The Electron viewer for the cohort. Install docs cover per-platform setup,
+        including the <code>xattr -cr</code> step macOS needs while the app isn't yet
+        code-signed.
       </p>
-      <p class="step-action">shape-rotator-os/docs/INSTALL.md</p>
+      <p class="step-action">github.com/dmarzzz/shape-rotator-os/blob/main/docs/INSTALL.md</p>
     </div>
 
     <!-- Step 04 -->
@@ -621,11 +624,10 @@
       </div>
       <h3 class="step-title">Fill in your profile.</h3>
       <p class="step-body">
-        Ask your local agent — the <code>/shape-rotator-profile</code> skill in the
-        field-kit walks through the schema and opens the PR. Or use the in-app editor
-        as a fallback.
+        Ask your local agent — the <code>/shape-rotator-profile</code> skill walks
+        through the schema and opens the PR. The in-app editor is a fallback.
       </p>
-      <p class="step-action">field-kit · /shape-rotator-profile</p>
+      <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit/blob/main/skills/shape-rotator-profile/SKILL.md</p>
     </div>
 
     <!-- Step 05 -->
@@ -636,10 +638,9 @@
       </div>
       <h3 class="step-title">Join Matrix (as a human).</h3>
       <p class="step-body">
-        The cohort chats in Matrix. Doc covers homeserver, room, and client setup —
-        currently a stub; @amiller fills in the IDs once they're settled.
+        The cohort chats in Matrix. Doc covers homeserver, room, and client setup.
       </p>
-      <p class="step-action">shape-rotator-os/docs/MATRIX.md</p>
+      <p class="step-action">github.com/dmarzzz/shape-rotator-os/blob/main/docs/MATRIX.md</p>
     </div>
 
     <!-- Step 06 -->
@@ -653,7 +654,6 @@
         Novel's multimodal 1:½ interview — a short conversation so the cohort has a
         baseline picture of what you bring. Opens in your browser.
       </p>
-      <p class="step-action">interview link · operator pending</p>
     </div>
 
     <!-- ───── Bonus separator ───── -->
@@ -670,9 +670,9 @@
       <h3 class="step-title">Set up a Hermes agent.</h3>
       <p class="step-body">
         An autonomous second agent that runs alongside your primary one — background
-        research, scheduled summaries, etc. Links land when the docs do.
+        research, scheduled summaries, etc.
       </p>
-      <p class="step-action">hermes docs · operator pending</p>
+      <p class="step-action">github.com/dmarzzz/shape-rotator-os/blob/main/docs/HERMES.md</p>
     </div>
 
     <!-- Bonus B2 -->
@@ -684,9 +684,9 @@
       <h3 class="step-title">Add your bot to Matrix.</h3>
       <p class="step-body">
         Register your local agent as a bot in the cohort room so it can post + read on
-        your behalf. The field-kit ships a skill that walks through it.
+        your behalf. The field-kit ships a skill for it.
       </p>
-      <p class="step-action">field-kit · /matrix-bot-setup</p>
+      <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit/blob/main/skills/matrix-bot-setup/SKILL.md</p>
     </div>
 
   </div>
@@ -759,7 +759,7 @@
         </div>
         <div class="rhythm-row">
           <span class="rhythm-when">Weekend<span class="qual">sat + sun</span></span>
-          <span class="rhythm-what">Off by default.</span>
+          <span class="rhythm-what">Optional by default. Anything programmatic is opt-in.</span>
         </div>
       </div>
     </div>
@@ -775,17 +775,28 @@
         <div class="vector">
           <span class="vector-num">i.</span>
           <span class="vector-title">Productization</span>
-          <span class="vector-body">Did you make something useful and get it used.</span>
+          <span class="vector-body">
+            Is this a product people <em>want</em>? PMF indicators, organic
+            trajectory, distribution-to-market readiness. Did you make something
+            useful and get it used.
+          </span>
         </div>
         <div class="vector">
           <span class="vector-num">ii.</span>
           <span class="vector-title">Research lineage</span>
-          <span class="vector-body">IC3 / Flashbots IP picked up and pushed forward.</span>
+          <span class="vector-body">
+            Is the architecture rooted in something real? IC3 / Flashbots IP
+            picked up and pushed forward. Nice-to-have, not required.
+          </span>
         </div>
         <div class="vector">
           <span class="vector-num">iii.</span>
           <span class="vector-title">Collaboration</span>
-          <span class="vector-body">How much you helped <em>other</em> projects. Scored at graduation.</span>
+          <span class="vector-body">
+            How much you helped <em>other</em> projects — code review, dataset
+            contributions, design help, coordination tooling. Retroactively
+            attributed at graduation via peer-rubric review.
+          </span>
         </div>
       </div>
     </div>
