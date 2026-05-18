@@ -215,6 +215,33 @@
   }
   .step.span-2 { grid-column: 1 / -1; }
 
+  .step.bonus {
+    background: transparent;
+    border-style: dashed;
+  }
+  .step.bonus .step-num { color: var(--oxide); }
+
+  .bonus-sep {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 2px 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--oxide);
+    font-weight: 700;
+  }
+  .bonus-sep::before, .bonus-sep::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--oxide);
+  }
+
   /* corner ticks — small filled squares at each corner for spec-sheet feel */
   .step::before, .step::after,
   .step .tick-tl, .step .tick-br {
@@ -537,8 +564,8 @@
   <!-- ═════════════ § 01 · FIRST WEEK ═════════════ -->
   <div class="section-eyebrow">
     <span class="num">§ 01</span>
-    <span>First Week</span>
-    <span class="sub">— 5 steps · ~30 min · everything below opens a GitHub PR</span>
+    <span>Get Wired In</span>
+    <span class="sub">— 6 core steps + 2 bonus · onboarding v0.5</span>
   </div>
 
   <div class="steps-grid">
@@ -551,10 +578,9 @@
       </div>
       <h3 class="step-title">Set up your local agent.</h3>
       <p class="step-body">
-        You're reading this inside the <code>field-guide</code> app, so the agent is already
-        running. The <code>field-kit</code> gives it CLI tools — research, voice, content, skills.
+        You're reading this inside <strong>Shape Rotator OS</strong>, which means your
+        local agent is already running on this machine. ✓
       </p>
-      <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit</p>
     </div>
 
     <!-- Step 02 -->
@@ -563,13 +589,13 @@
       <div class="step-head">
         <span class="step-num"><span class="bracket">[</span> 02 <span class="bracket">]</span></span>
       </div>
-      <h3 class="step-title">Verify your profile.</h3>
+      <h3 class="step-title">Install the field-kit.</h3>
       <p class="step-body">
-        Open the editor and fill out your <em>personal API</em>: <code>comm_style</code>,
-        <code>contribute_interests</code>, <code>availability_pref</code>,
-        <code>weekly_intention</code>. Submit opens a PR.
+        CLI tools for your agent — research swarm, content pipeline, cohort skills, plus
+        <strong>voxterm</strong> (voice TUI). Clone, <code>bash setup.sh</code>, then
+        <code>./kit install-global</code> to put <code>rotate</code> on your PATH.
       </p>
-      <p class="step-action">alchemy → profile → verify + edit</p>
+      <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit</p>
     </div>
 
     <!-- Step 03 -->
@@ -578,11 +604,13 @@
       <div class="step-head">
         <span class="step-num"><span class="bracket">[</span> 03 <span class="bracket">]</span></span>
       </div>
-      <h3 class="step-title">Join the Matrix server.</h3>
+      <h3 class="step-title">Install Shape Rotator OS.</h3>
       <p class="step-body">
-        Create an account on the homeserver and join the cohort room.
+        The Electron viewer you're reading this in. ✓ already running for you, but
+        install docs cover per-platform setup — including the <code>xattr -cr</code>
+        step macOS needs while the app isn't yet code-signed.
       </p>
-      <p class="step-action">#shape-rotator-general:mtrx.shaperotator.xyz</p>
+      <p class="step-action">shape-rotator-os/docs/INSTALL.md</p>
     </div>
 
     <!-- Step 04 -->
@@ -591,26 +619,74 @@
       <div class="step-head">
         <span class="step-num"><span class="bracket">[</span> 04 <span class="bracket">]</span></span>
       </div>
-      <h3 class="step-title">Send your agent into Matrix.</h3>
+      <h3 class="step-title">Fill in your profile.</h3>
       <p class="step-body">
-        Register your local agent as a bot in the cohort room so it can post and read
-        on your behalf.
+        Ask your local agent — the <code>/shape-rotator-profile</code> skill in the
+        field-kit walks through the schema and opens the PR. Or use the in-app editor
+        as a fallback.
       </p>
-      <p class="step-action">field-kit · /matrix-bot-setup</p>
+      <p class="step-action">field-kit · /shape-rotator-profile</p>
     </div>
 
-    <!-- Step 05 — spans both columns -->
-    <div class="step span-2">
+    <!-- Step 05 -->
+    <div class="step">
       <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
         <span class="step-num"><span class="bracket">[</span> 05 <span class="bracket">]</span></span>
       </div>
-      <h3 class="step-title">Do the cohort interview &amp; quiz.</h3>
+      <h3 class="step-title">Join Matrix (as a human).</h3>
       <p class="step-body">
-        Short interview and quiz so the cohort knows what each of you brings and what
-        you're after. Links published in Matrix once they're up.
+        The cohort chats in Matrix. Doc covers homeserver, room, and client setup —
+        currently a stub; @amiller fills in the IDs once they're settled.
       </p>
-      <p class="step-action">interview + quiz · link tbd</p>
+      <p class="step-action">shape-rotator-os/docs/MATRIX.md</p>
+    </div>
+
+    <!-- Step 06 -->
+    <div class="step">
+      <span class="tick-tl"></span><span class="tick-br"></span>
+      <div class="step-head">
+        <span class="step-num"><span class="bracket">[</span> 06 <span class="bracket">]</span></span>
+      </div>
+      <h3 class="step-title">Do the cohort interview.</h3>
+      <p class="step-body">
+        Novel's multimodal 1:½ interview — a short conversation so the cohort has a
+        baseline picture of what you bring. Opens in your browser.
+      </p>
+      <p class="step-action">interview link · operator pending</p>
+    </div>
+
+    <!-- ───── Bonus separator ───── -->
+    <div class="bonus-sep" aria-hidden="true">
+      <span>BONUS · OPTIONAL</span>
+    </div>
+
+    <!-- Bonus B1 -->
+    <div class="step bonus">
+      <span class="tick-tl"></span><span class="tick-br"></span>
+      <div class="step-head">
+        <span class="step-num"><span class="bracket">[</span> B1 <span class="bracket">]</span></span>
+      </div>
+      <h3 class="step-title">Set up a Hermes agent.</h3>
+      <p class="step-body">
+        An autonomous second agent that runs alongside your primary one — background
+        research, scheduled summaries, etc. Links land when the docs do.
+      </p>
+      <p class="step-action">hermes docs · operator pending</p>
+    </div>
+
+    <!-- Bonus B2 -->
+    <div class="step bonus">
+      <span class="tick-tl"></span><span class="tick-br"></span>
+      <div class="step-head">
+        <span class="step-num"><span class="bracket">[</span> B2 <span class="bracket">]</span></span>
+      </div>
+      <h3 class="step-title">Add your bot to Matrix.</h3>
+      <p class="step-body">
+        Register your local agent as a bot in the cohort room so it can post + read on
+        your behalf. The field-kit ships a skill that walks through it.
+      </p>
+      <p class="step-action">field-kit · /matrix-bot-setup</p>
     </div>
 
   </div>
