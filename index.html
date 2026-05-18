@@ -61,87 +61,83 @@
   header.masthead {
     border-top: 3px solid var(--ink);
     border-bottom: 3px solid var(--ink);
-    padding: 12px 0 14px;
-    margin-bottom: 14px;
+    padding: 10px 0 12px;
+    margin-bottom: 12px;
     position: relative;
   }
 
   .mast-top {
     display: grid;
-    grid-template-columns: 64px 1fr auto;
-    gap: 18px;
+    grid-template-columns: 52px 1fr auto;
+    gap: 14px;
     align-items: center;
   }
 
   .mark-svg {
-    width: 64px;
-    height: 64px;
+    width: 52px;
+    height: 52px;
     display: block;
   }
 
   .wordmark {
     margin: 0;
-    line-height: 0.95;
+    line-height: 1;
+    white-space: nowrap;
   }
   .wordmark .word-1 {
-    display: block;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 28px;
     letter-spacing: 0.005em;
     text-transform: uppercase;
     color: var(--ink);
   }
   .wordmark .word-2 {
-    display: block;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 300;
-    font-size: 38px;
-    letter-spacing: 0.1em;
+    font-size: 28px;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--oxide);
-    margin-top: -2px;
+    margin-left: 0.3em;
   }
 
   .mast-meta {
     text-align: right;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink);
-    line-height: 1.55;
-    flex-shrink: 0;
+    line-height: 1.45;
     border-left: 2px solid var(--ink);
-    padding-left: 14px;
+    padding-left: 12px;
   }
   .mast-meta .meta-em { color: var(--oxide); }
   .mast-meta .meta-link {
     color: var(--oxide);
     text-decoration: none;
     border-bottom: 1.5px solid var(--oxide);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: none;
     font-weight: 700;
     padding-bottom: 1px;
   }
 
-  .subtitle-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 18px;
+  .mast-body {
     margin-top: 10px;
-    border-top: 1px solid var(--ink);
     padding-top: 9px;
+    border-top: 1px solid var(--ink);
+    display: grid;
+    gap: 6px;
   }
 
   .subtitle {
     margin: 0;
     font-family: "JetBrains Mono", monospace;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 18px;
     letter-spacing: -0.005em;
     color: var(--ink);
     text-transform: uppercase;
@@ -152,22 +148,20 @@
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 12.5px;
     line-height: 1.4;
-    color: var(--ink);
-    max-width: 4.3in;
-    text-align: right;
+    color: var(--ink-soft);
+    max-width: 6.8in;
   }
 
   .partners-row {
-    margin-top: 8px;
+    margin-top: 2px;
     font-family: "JetBrains Mono", monospace;
     font-size: 9px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--ink-soft);
     font-weight: 600;
-    text-align: center;
   }
   .partners-row .x { color: var(--oxide); margin: 0 2px; font-weight: 700; }
 
@@ -529,16 +523,15 @@
       </div>
     </div>
 
-    <div class="subtitle-row">
+    <div class="mast-body">
       <h2 class="subtitle">Onboarding<span class="slash"> / </span>Guide</h2>
       <p class="tagline">
         A 10-week program turning cryptography and AI research into products people can use.
       </p>
+      <p class="partners-row">
+        IC3 <span class="x">×</span> Flashbots <span class="x">×</span> The Convent <span class="x">×</span> Blockchain Builders Fund
+      </p>
     </div>
-
-    <p class="partners-row">
-      IC3 <span class="x">×</span> Flashbots <span class="x">×</span> The Convent <span class="x">×</span> Blockchain Builders Fund
-    </p>
   </header>
 
   <!-- ═════════════ § 01 · FIRST WEEK ═════════════ -->
