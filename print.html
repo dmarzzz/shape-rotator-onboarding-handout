@@ -3,9 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Shape Rotator · Onboarding Guide</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="description" content="Onboarding guide for the Shape Rotator Accelerator — Cohort 01, 2026. Six steps to get wired in, the 10-week arc, default week, and how we evaluate." />
-<meta name="theme-color" content="#FAF8F5" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,164 +20,99 @@
     --grid: #d9d2c2;
   }
 
+  @page { size: letter; margin: 0.3in; }
   * { box-sizing: border-box; }
 
   html, body {
     margin: 0;
     padding: 0;
-    background: var(--paper);
+    background: #c8c0ad;
     color: var(--ink);
     font-family: "Space Grotesk", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  body {
+  body { display: flex; justify-content: center; padding: 32px 16px 64px; }
+
+  .sheet {
+    width: 8.5in;
+    min-height: 11in;
+    background: var(--paper);
+    /* faint dot grid — gives the page a graph-paper feel without burning toner */
     background-image: radial-gradient(circle, rgba(26,26,26,0.045) 0.5px, transparent 0.6px);
     background-size: 12px 12px;
     background-position: 0 0;
-    min-height: 100vh;
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  a { color: inherit; }
-
-  /* ───── Top bar ───── */
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: rgba(250, 248, 245, 0.88);
-    border-bottom: 2px solid var(--ink);
-    padding: 8px max(14px, env(safe-area-inset-left));
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-  }
-  .topbar-mark {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
+    padding: 0.5in 0.55in 0.45in;
+    position: relative;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.08);
     color: var(--ink);
+    overflow: hidden;
   }
-  .topbar-mark svg { width: 26px; height: 26px; display: block; }
-  .topbar-mark-text {
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-  .topbar-mark-text em {
-    font-style: normal;
-    font-weight: 300;
-    color: var(--oxide);
-    margin-left: 0.25em;
-  }
-  .topbar-link {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    border: 1.5px solid var(--ink);
-    padding: 6px 10px;
-    background: var(--paper);
-    white-space: nowrap;
-  }
-  .topbar-link:hover { background: var(--ink); color: var(--paper); }
 
-  /* ───── Page ───── */
-  .page {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 22px 18px 64px;
-  }
-  @media (min-width: 720px) {
-    .page { padding: 34px 28px 80px; }
+  @media print {
+    html, body { background: white; }
+    body { padding: 0; display: block; }
+    .sheet { width: 100%; min-height: 0; box-shadow: none; padding: 0; background: var(--paper); }
+    .no-print { display: none !important; }
   }
 
   /* ───── Masthead ───── */
   header.masthead {
     border-top: 3px solid var(--ink);
     border-bottom: 3px solid var(--ink);
-    padding: 14px 0 16px;
-    margin-bottom: 18px;
+    padding: 10px 0 12px;
+    margin-bottom: 12px;
+    position: relative;
   }
 
   .mast-top {
     display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 16px;
+    grid-template-columns: 52px 1fr auto;
+    gap: 14px;
     align-items: center;
   }
-  @media (min-width: 540px) {
-    .mast-top { grid-template-columns: 64px 1fr auto; }
+
+  .mark-svg {
+    width: 52px;
+    height: 52px;
+    display: block;
   }
 
-  .mark-svg { width: 56px; height: 56px; display: block; }
-  @media (min-width: 540px) { .mark-svg { width: 64px; height: 64px; } }
-
-  .wordmark { margin: 0; line-height: 1; }
+  .wordmark {
+    margin: 0;
+    line-height: 1;
+    white-space: nowrap;
+  }
   .wordmark .word-1 {
     font-family: "Space Grotesk", sans-serif;
     font-weight: 700;
-    font-size: clamp(20px, 6.5vw, 30px);
+    font-size: 28px;
     letter-spacing: 0.005em;
     text-transform: uppercase;
     color: var(--ink);
-    display: block;
   }
   .wordmark .word-2 {
     font-family: "Space Grotesk", sans-serif;
     font-weight: 300;
-    font-size: clamp(20px, 6.5vw, 30px);
+    font-size: 28px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--oxide);
-    display: block;
-    margin-top: 2px;
+    margin-left: 0.3em;
   }
 
   .mast-meta {
-    grid-column: 1 / -1;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--ink);
-    text-align: left;
+    text-align: right;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink);
-    line-height: 1.5;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 14px;
-    align-items: baseline;
-  }
-  @media (min-width: 540px) {
-    .mast-meta {
-      grid-column: auto;
-      grid-row: 1;
-      margin-top: 0;
-      padding-top: 0;
-      border-top: none;
-      border-left: 2px solid var(--ink);
-      padding-left: 12px;
-      text-align: right;
-      flex-direction: column;
-      align-items: flex-end;
-      line-height: 1.45;
-      gap: 0;
-    }
+    line-height: 1.45;
+    border-left: 2px solid var(--ink);
+    padding-left: 12px;
   }
   .mast-meta .meta-em { color: var(--oxide); }
   .mast-meta .meta-link {
@@ -193,39 +126,51 @@
   }
 
   .mast-body {
-    margin-top: 14px;
-    padding-top: 12px;
+    margin-top: 10px;
+    padding-top: 9px;
     border-top: 1px solid var(--ink);
+    display: grid;
+    gap: 6px;
   }
 
   .subtitle {
     margin: 0;
     font-family: "JetBrains Mono", monospace;
     font-weight: 700;
-    font-size: clamp(20px, 5.5vw, 26px);
+    font-size: 18px;
     letter-spacing: -0.005em;
     color: var(--ink);
     text-transform: uppercase;
-    line-height: 1.15;
   }
   .subtitle .slash { color: var(--oxide); margin: 0 4px; }
 
   .tagline {
-    margin: 12px 0 0;
+    margin: 0;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 400;
-    font-size: clamp(14px, 4vw, 16px);
-    line-height: 1.45;
+    font-size: 12.5px;
+    line-height: 1.4;
     color: var(--ink-soft);
+    max-width: 6.8in;
   }
 
-  /* ───── Section eyebrow ───── */
+  .partners-row {
+    margin-top: 2px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .partners-row .x { color: var(--oxide); margin: 0 2px; font-weight: 700; }
+
+  /* ───── Section header ───── */
   .section-eyebrow {
     display: flex;
     align-items: baseline;
-    flex-wrap: wrap;
-    gap: 6px 10px;
-    margin: 22px 0 12px;
+    gap: 10px;
+    margin: 8px 0 5px;
     font-family: "JetBrains Mono", monospace;
     font-size: 11px;
     letter-spacing: 0.22em;
@@ -236,144 +181,169 @@
   .section-eyebrow .num {
     color: var(--paper);
     background: var(--oxide);
-    padding: 3px 8px 2px;
-    font-size: 10.5px;
+    padding: 2px 7px 1px;
+    font-size: 10px;
     letter-spacing: 0.16em;
   }
   .section-eyebrow .sub {
     color: var(--ink-soft);
     font-weight: 500;
     letter-spacing: 0.12em;
-    flex: 0 0 100%;
-    font-size: 10px;
   }
-  @media (min-width: 540px) {
-    .section-eyebrow .sub { flex: 0 1 auto; }
-  }
-  .section-eyebrow .rule {
+  .section-eyebrow::after {
+    content: "";
     flex: 1;
     height: 2px;
     background: var(--ink);
-    align-self: center;
-    min-width: 24px;
   }
 
   /* ───── Step cards ───── */
   .steps-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
     margin-bottom: 8px;
-  }
-  @media (min-width: 640px) {
-    .steps-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
   }
 
   .step {
     border: 1.5px solid var(--ink);
-    padding: 14px 14px 14px;
-    background: rgba(255,255,255,0.55);
+    padding: 5px 10px 7px;
+    background: rgba(255,255,255,0.45);
     position: relative;
     display: grid;
-    gap: 8px;
+    gap: 3px;
+  }
+  .step.span-2 { grid-column: 1 / -1; }
+
+  .step.bonus {
+    background: transparent;
+    border-style: dashed;
+  }
+  .step.bonus .step-num { color: var(--oxide); }
+
+  .bonus-sep {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 2px 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--oxide);
+    font-weight: 700;
+  }
+  .bonus-sep::before, .bonus-sep::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--oxide);
   }
 
-  /* corner ticks — spec-sheet feel */
+  /* corner ticks — small filled squares at each corner for spec-sheet feel */
   .step::before, .step::after,
   .step .tick-tl, .step .tick-br {
     content: "";
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     background: var(--ink);
   }
-  .step::before { top: -2.5px; left: -2.5px; }
-  .step::after  { bottom: -2.5px; right: -2.5px; }
-  .step .tick-tl { top: -2.5px; right: -2.5px; }
-  .step .tick-br { bottom: -2.5px; left: -2.5px; }
+  .step::before { top: -2px; left: -2px; }
+  .step::after  { bottom: -2px; right: -2px; }
+  .step .tick-tl { top: -2px; right: -2px; }
+  .step .tick-br { bottom: -2px; left: -2px; }
 
   .step-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    margin-bottom: 1px;
   }
 
   .step-num {
     font-family: "JetBrains Mono", monospace;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.06em;
     color: var(--ink);
   }
   .step-num .bracket { color: var(--oxide); }
 
+  .step-status {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 2px 7px 1px;
+    color: var(--ink);
+    font-weight: 700;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+  }
+  .step-status.auto    { color: var(--ink-soft); border-color: var(--rule-soft); font-weight: 500; }
+  .step-status.now     { color: var(--paper); background: var(--oxide); border-color: var(--oxide); }
+  .step-status.pending { color: var(--ink-soft); border-color: var(--rule-soft); font-weight: 500; }
+
   .step-title {
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 17px;
+    font-size: 14.5px;
     font-weight: 600;
     letter-spacing: -0.01em;
-    line-height: 1.15;
+    line-height: 1.12;
     color: var(--ink);
   }
 
   .step-body {
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 14px;
-    line-height: 1.45;
+    font-size: 10.5px;
+    line-height: 1.38;
     color: var(--ink);
   }
   .step-body code {
     font-family: "JetBrains Mono", monospace;
-    font-size: 13px;
+    font-size: 10px;
     color: var(--ink);
     background: var(--paper-deep);
-    padding: 0 5px;
-    border-radius: 1px;
+    padding: 0 4px;
   }
 
   .step-action {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
+    font-size: 8.5px;
     font-weight: 600;
     letter-spacing: 0.01em;
     color: var(--oxide);
     border-top: 1.5px solid var(--ink);
-    padding-top: 8px;
-    margin: 4px 0 0;
+    padding-top: 4px;
+    margin-top: 1px;
     word-break: break-all;
-    line-height: 1.35;
+    line-height: 1.3;
   }
   .step-action::before { content: "→ "; }
 
   /* ───── Arc timeline ───── */
   .arc {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
     border: 2px solid var(--ink);
-  }
-  @media (min-width: 720px) {
-    .arc { grid-template-columns: repeat(5, 1fr); }
+    margin-bottom: 8px;
   }
 
   .arc-cell {
-    padding: 12px 14px 14px;
-    border-bottom: 1.5px solid var(--ink);
+    padding: 5px 9px 6px;
+    border-right: 1.5px solid var(--ink);
     display: grid;
-    gap: 4px;
+    gap: 2px;
     position: relative;
   }
-  .arc-cell:last-child { border-bottom: none; }
-  @media (min-width: 720px) {
-    .arc-cell {
-      border-bottom: none;
-      border-right: 1.5px solid var(--ink);
-      padding: 10px 12px 12px;
-    }
-    .arc-cell:last-child { border-right: none; }
-  }
+  .arc-cell:last-child { border-right: none; }
   .arc-cell.now {
     background: var(--oxide);
     color: var(--paper);
@@ -382,11 +352,10 @@
   .arc-cell.now .arc-title,
   .arc-cell.now .arc-dates,
   .arc-cell.now .arc-note { color: var(--paper); }
-  .arc-cell.now .arc-weeks { color: var(--paper); opacity: 0.85; }
 
   .arc-weeks {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -394,99 +363,90 @@
   }
   .arc-title {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: -0.005em;
     color: var(--ink);
-    line-height: 1.15;
-  }
-  @media (min-width: 720px) {
-    .arc-title { font-size: 14px; }
+    line-height: 1.1;
   }
   .arc-dates {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
+    font-size: 8.5px;
     color: var(--ink-soft);
     letter-spacing: 0.04em;
   }
   .arc-note {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 12.5px;
-    line-height: 1.35;
+    font-size: 10px;
+    line-height: 1.3;
     color: var(--ink-soft);
     margin-top: 2px;
   }
 
-  /* ───── Rhythm ───── */
+  /* ───── Bottom grid: rhythm + vectors ───── */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 12px;
+    margin-bottom: 0;
+  }
+
+  /* Weekly rhythm */
   .rhythm {
     border: 1.5px solid var(--ink);
   }
   .rhythm-row {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 10px 14px 11px;
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
+    padding: 3px 11px;
     border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
   }
   .rhythm-row:last-child { border-bottom: none; }
-  .rhythm-row:nth-child(odd) { background: rgba(255,255,255,0.5); }
-  @media (min-width: 540px) {
-    .rhythm-row {
-      grid-template-columns: 130px 1fr;
-      gap: 16px;
-      padding: 8px 14px;
-      align-items: baseline;
-    }
-  }
+  .rhythm-row:nth-child(odd) { background: rgba(255,255,255,0.35); }
 
   .rhythm-when {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11.5px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink);
   }
   .rhythm-when .qual {
-    display: inline;
+    display: block;
     color: var(--ink-soft);
     font-weight: 400;
     letter-spacing: 0.06em;
-    font-size: 10px;
+    font-size: 8px;
+    margin-top: 1px;
     text-transform: lowercase;
-    margin-left: 6px;
-  }
-  @media (min-width: 540px) {
-    .rhythm-when .qual { display: block; margin-left: 0; margin-top: 2px; }
   }
   .rhythm-what {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 14.5px;
-    line-height: 1.4;
+    font-size: 11.5px;
+    line-height: 1.3;
     color: var(--ink);
   }
 
-  /* ───── Vectors ───── */
+  /* Vectors */
   .vectors {
     display: grid;
-    gap: 10px;
+    gap: 4px;
   }
-  @media (min-width: 720px) {
-    .vectors { grid-template-columns: repeat(3, 1fr); }
-  }
-
   .vector {
-    padding: 12px 14px 13px;
+    padding: 6px 10px 7px;
     border: 1.5px solid var(--ink);
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.4);
     display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 4px 10px;
+    grid-template-columns: 28px 1fr;
+    gap: 4px 8px;
   }
   .vector-num {
     font-family: "JetBrains Mono", monospace;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 14px;
     color: var(--oxide);
     line-height: 1;
     grid-row: 1 / 3;
@@ -494,7 +454,7 @@
   }
   .vector-title {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 14px;
+    font-size: 12.5px;
     font-weight: 700;
     color: var(--ink);
     letter-spacing: -0.005em;
@@ -503,69 +463,94 @@
   .vector-body {
     grid-column: 2;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 13.5px;
-    line-height: 1.35;
+    font-size: 10.5px;
+    line-height: 1.3;
     color: var(--ink-soft);
   }
 
-  /* ───── Printable CTA ───── */
-  .further {
+  /* ───── Footer ───── */
+  footer.colophon {
     border-top: 3px solid var(--ink);
-    margin-top: 28px;
-    padding-top: 18px;
-    text-align: center;
-  }
-  .further-intro {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 13px;
+    padding-top: 7px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     color: var(--ink-soft);
-    margin: 0 0 10px;
+    font-weight: 600;
   }
-  .print-link {
-    display: inline-block;
+  .colophon .center {
+    flex: 1;
+    text-align: center;
+    color: var(--oxide);
+  }
+
+  /* Print button */
+  .print-button {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    z-index: 10;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 10px 16px;
     font-family: "JetBrains Mono", monospace;
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--paper);
-    background: var(--ink);
-    padding: 12px 18px;
-    text-decoration: none;
-    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    box-shadow: 0 8px 24px -8px rgba(0,0,0,0.4);
   }
-  .print-link:hover { background: var(--oxide); border-color: var(--oxide); }
+  .print-button:hover { background: var(--oxide); }
+
+  .mobile-back-link {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 10;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 8px 12px;
+  }
+  .mobile-back-link:hover { background: var(--ink); color: var(--paper); }
 </style>
 </head>
 <body>
 
-<nav class="topbar" aria-label="primary">
-  <a class="topbar-mark" href="/">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Shape Rotator mark">
-      <polygon points="50,18 82,32 82,72 50,86 18,72 18,32" fill="none" stroke="#1A1A1A" stroke-width="3"/>
-      <polygon points="50,30 70,40 70,68 50,78 30,68 30,40" fill="none" stroke="#8a2e1c" stroke-width="3"/>
-      <line x1="50" y1="30" x2="50" y2="78" stroke="#1A1A1A" stroke-width="1.5"/>
-      <line x1="30" y1="40" x2="70" y2="40" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="3,3"/>
-      <line x1="30" y1="68" x2="70" y2="68" stroke="#1A1A1A" stroke-width="1.5"/>
-    </svg>
-    <span class="topbar-mark-text">Shape Rotator<em>Accelerator</em></span>
-  </a>
-  <a class="topbar-link" href="/print">Printable →</a>
-</nav>
+<a class="mobile-back-link no-print" href="/">← Mobile version</a>
+<button class="print-button no-print" onclick="window.print()">Print → PDF</button>
 
-<main class="page">
+<article class="sheet">
 
   <!-- ═════════════ MASTHEAD ═════════════ -->
   <header class="masthead">
     <div class="mast-top">
+      <!-- Wireframe rotated-cube mark (the "oxide-red object" motif from shaperotator.xyz) -->
       <svg class="mark-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Shape Rotator mark">
+        <!-- back face -->
         <polygon points="50,18 82,32 82,72 50,86 18,72 18,32" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+        <!-- inner cube wireframe (isometric) -->
         <polygon points="50,30 70,40 70,68 50,78 30,68 30,40" fill="none" stroke="#8a2e1c" stroke-width="2"/>
+        <!-- axis lines -->
         <line x1="50" y1="30" x2="50" y2="78" stroke="#1A1A1A" stroke-width="1"/>
         <line x1="30" y1="40" x2="70" y2="40" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2,2"/>
         <line x1="30" y1="68" x2="70" y2="68" stroke="#1A1A1A" stroke-width="1"/>
+        <!-- rotation arc -->
         <path d="M 14 50 A 36 36 0 0 1 38 18" fill="none" stroke="#8a2e1c" stroke-width="1.2"/>
         <polygon points="38,18 33,17 36,22" fill="#8a2e1c"/>
+        <!-- corner dots -->
         <circle cx="50" cy="18" r="2" fill="#1A1A1A"/>
         <circle cx="82" cy="32" r="2" fill="#1A1A1A"/>
         <circle cx="82" cy="72" r="2" fill="#1A1A1A"/>
@@ -580,15 +565,14 @@
       </h1>
 
       <div class="mast-meta">
-        <span class="meta-em">Cohort 01</span>
-        <span>2026</span>
+        <span class="meta-em">Cohort 01</span><br/>
+        2026<br/>
         <a class="meta-link" href="https://shaperotator.xyz">shaperotator.xyz</a>
       </div>
     </div>
 
     <div class="mast-body">
-      <h2 class="subtitle">Onboarding<span class="slash">/</span>Guide</h2>
-      <p class="tagline">Six steps to get wired in, the 10-week arc, the default week, and how we evaluate.</p>
+      <h2 class="subtitle">Onboarding<span class="slash"> / </span>Guide</h2>
     </div>
   </header>
 
@@ -596,12 +580,12 @@
   <div class="section-eyebrow">
     <span class="num">§ 01</span>
     <span>Get Wired In</span>
-    <span class="rule"></span>
-    <span class="sub">6 steps · v0.5</span>
+    <span class="sub">— 6 steps · v0.5 · 2 bonus in the OS onboarding tab</span>
   </div>
 
   <div class="steps-grid">
 
+    <!-- Step 01 -->
     <div class="step">
       <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
@@ -615,6 +599,7 @@
       <p class="step-action">github.com/anthropics/claude-code</p>
     </div>
 
+    <!-- Step 02 -->
     <div class="step">
       <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
@@ -629,6 +614,7 @@
       <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit</p>
     </div>
 
+    <!-- Step 03 -->
     <div class="step">
       <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
@@ -643,6 +629,7 @@
       <p class="step-action">github.com/dmarzzz/shape-rotator-os/blob/main/docs/INSTALL.md</p>
     </div>
 
+    <!-- Step 04 -->
     <div class="step">
       <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
@@ -656,6 +643,7 @@
       <p class="step-action">github.com/dmarzzz/shape-rotator-field-kit/blob/main/skills/shape-rotator-profile/SKILL.md</p>
     </div>
 
+    <!-- Step 05 -->
     <div class="step">
       <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
@@ -668,6 +656,7 @@
       <p class="step-action">github.com/dmarzzz/shape-rotator-os/blob/main/docs/MATRIX.md</p>
     </div>
 
+    <!-- Step 06 -->
     <div class="step">
       <span class="tick-tl"></span><span class="tick-br"></span>
       <div class="step-head">
@@ -686,13 +675,12 @@
   <div class="section-eyebrow">
     <span class="num">§ 02</span>
     <span>10-Week Arc</span>
-    <span class="rule"></span>
-    <span class="sub">subject to change</span>
+    <span class="sub">— subject to change!</span>
   </div>
 
   <div class="arc">
     <div class="arc-cell now">
-      <span class="arc-weeks">Wk 1–2 · now</span>
+      <span class="arc-weeks">Wk 1–2</span>
       <span class="arc-title">Onboarding</span>
       <span class="arc-dates">may 18 → may 31</span>
       <span class="arc-note">rolling arrivals · low intensity by design</span>
@@ -723,68 +711,69 @@
     </div>
   </div>
 
-  <!-- ═════════════ § 03 · DEFAULT WEEK ═════════════ -->
-  <div class="section-eyebrow">
-    <span class="num">§ 03</span>
-    <span>Default Week</span>
-    <span class="rule"></span>
+  <!-- ═════════════ Bottom grid: rhythm + vectors ═════════════ -->
+  <div class="bottom-grid">
+
+    <!-- § 03 · default week -->
+    <div>
+      <div class="section-eyebrow">
+        <span class="num">§ 03</span>
+        <span>Default Week</span>
+      </div>
+
+      <div class="rhythm">
+        <div class="rhythm-row">
+          <span class="rhythm-when">Mornings<span class="qual">weekdays</span></span>
+          <span class="rhythm-what">Heads-down. <strong>Protected.</strong> No programming until lunch.</span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">5 – 7 PM<span class="qual">mon · tue · thu</span></span>
+          <span class="rhythm-what">Cohort sessions. Workshops, talks, whiteboarding.</span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">Wednesday<span class="qual">all day</span></span>
+          <span class="rhythm-what">No required meetings. <strong>Focus day.</strong></span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">9 – 10 PM<span class="qual">rotating</span></span>
+          <span class="rhythm-what">Salon · roast · improv. Opt-in.</span>
+        </div>
+        <div class="rhythm-row">
+          <span class="rhythm-when">Weekend<span class="qual">sat + sun</span></span>
+          <span class="rhythm-what">Optional by default. Anything programmatic is opt-in.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- § 04 · vectors -->
+    <div>
+      <div class="section-eyebrow">
+        <span class="num">§ 04</span>
+        <span>Vectors</span>
+      </div>
+
+      <div class="vectors">
+        <div class="vector">
+          <span class="vector-num">i.</span>
+          <span class="vector-title">Productization</span>
+          <span class="vector-body">Did you make something useful and get it used? PMF + organic trajectory.</span>
+        </div>
+        <div class="vector">
+          <span class="vector-num">ii.</span>
+          <span class="vector-title">Research lineage</span>
+          <span class="vector-body">IC3 / Flashbots IP picked up and pushed forward. Nice-to-have.</span>
+        </div>
+        <div class="vector">
+          <span class="vector-num">iii.</span>
+          <span class="vector-title">Collaboration</span>
+          <span class="vector-body">How much you helped <em>other</em> projects. Retroactively attributed at graduation via peer-rubric review.</span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="rhythm">
-    <div class="rhythm-row">
-      <span class="rhythm-when">Mornings<span class="qual">weekdays</span></span>
-      <span class="rhythm-what">Heads-down. <strong>Protected.</strong> No programming until lunch.</span>
-    </div>
-    <div class="rhythm-row">
-      <span class="rhythm-when">5 – 7 PM<span class="qual">mon · tue · thu</span></span>
-      <span class="rhythm-what">Cohort sessions. Workshops, talks, whiteboarding.</span>
-    </div>
-    <div class="rhythm-row">
-      <span class="rhythm-when">Wednesday<span class="qual">all day</span></span>
-      <span class="rhythm-what">No required meetings. <strong>Focus day.</strong></span>
-    </div>
-    <div class="rhythm-row">
-      <span class="rhythm-when">9 – 10 PM<span class="qual">rotating</span></span>
-      <span class="rhythm-what">Salon · roast · improv. Opt-in.</span>
-    </div>
-    <div class="rhythm-row">
-      <span class="rhythm-when">Weekend<span class="qual">sat + sun</span></span>
-      <span class="rhythm-what">Optional by default. Anything programmatic is opt-in.</span>
-    </div>
-  </div>
 
-  <!-- ═════════════ § 04 · VECTORS ═════════════ -->
-  <div class="section-eyebrow">
-    <span class="num">§ 04</span>
-    <span>Vectors</span>
-    <span class="rule"></span>
-  </div>
-
-  <div class="vectors">
-    <div class="vector">
-      <span class="vector-num">i.</span>
-      <span class="vector-title">Productization</span>
-      <span class="vector-body">Did you make something useful and get it used? PMF + organic trajectory.</span>
-    </div>
-    <div class="vector">
-      <span class="vector-num">ii.</span>
-      <span class="vector-title">Research lineage</span>
-      <span class="vector-body">IC3 / Flashbots IP picked up and pushed forward. Nice-to-have.</span>
-    </div>
-    <div class="vector">
-      <span class="vector-num">iii.</span>
-      <span class="vector-title">Collaboration</span>
-      <span class="vector-body">How much you helped <em>other</em> projects. Retroactively attributed at graduation via peer-rubric review.</span>
-    </div>
-  </div>
-
-  <!-- ═════════════ PRINTABLE CTA ═════════════ -->
-  <section class="further">
-    <p class="further-intro">Want the printable spec-sheet for the wall?</p>
-    <a class="print-link" href="/print">Open printable version →</a>
-  </section>
-
-</main>
+</article>
 
 </body>
 </html>
